@@ -1,0 +1,35 @@
+{% extends "layout.html" %} {% block body %}
+
+
+<div class="container">
+    <form id="upload-form" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+    1. 업로드 파일 확장자명: JPG, PNG, JPEG, GIF
+    <br>
+    2. 업로드 파일명은 영어, 한글파일은 오류 발생
+    <input id="file-picker" type="file" name="file" accept="image/*" multiple>
+    <br>  
+    <input type="submit" value="  Add to db " id="upload-button">
+    </form>
+</div>
+
+<script>
+    $("#file-picker").change(function(){
+    var input = document.getElementById('file-picker');
+    for (var i=0; i<input.files.length; i++)
+    {
+    var ext= input.files[i].name.substring(input.files[i].name.lastIndexOf('.')+1).toLowerCase()
+    if ((ext == 'jpg') || (ext == 'png') || (ext == 'jpeg') || (ext == 'gif'))
+    {
+    $("#msg").text("Files are supported")
+    }
+    else
+    {
+    $("#msg").text("Files are NOT supported")
+    document.getElementById("file-picker").value ="";
+    }
+    }
+    });
+</script>
+
+
+{% endblock %}

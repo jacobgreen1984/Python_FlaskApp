@@ -1,0 +1,72 @@
+{% extends "layout.html" %} {% block body %}
+
+
+<div class="container">
+
+<h4>Leave me a message</h4>
+<p>You can leave me a message below</p>
+
+<form action="/message" method="post">
+    <div>
+    <input type="text" placeholder="name" name="name" size="5">
+    <br>
+    <textarea placeholder="enter your message here" name="content" cols="50" rows="4"></textarea>
+    <br>   
+    <button type="submit">Add to db</button>
+    </div>
+</form>   
+
+<br>
+<br>
+
+<style>
+#customers {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #778899;
+    color: white;
+}
+</style>
+    
+<table id="customers">
+    <tr>
+    <th colgroup width="150" aline="center">date</th>
+    <th colgroup width="100">option</th>
+    <th colgroup width="100">name</th>
+    <th>message</th>
+    </tr>
+
+    {% for row in rows %}
+    <tr>
+    <td align="center" valign="middle">{{row["date"]}}</td>
+    <form action="{{ url_for('delete_date') }}" method=post>
+    <input type=hidden value='{{ row["date"] }}' name="date_to_delete"></input>
+    <td align="center" valign="middle"><input type=submit value=delete></input></td>
+    </form>   
+    <td align="center" valign="middle">{{row["name"]}}</td>
+    <td>{{row["content"]}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</div>
+  
+    
+{% endblock %}
+

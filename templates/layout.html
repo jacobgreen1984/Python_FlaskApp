@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="discription" content="">
+  <meta name="author" content="">
+  <title>Jacob's ML Repository</title>
+
+  <!-- 
+  <script data-require="jquery@*" data-semver="2.0.3" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+  <script data-require="bootstrap@3.1.1" data-semver="3.1.1" src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <script data-require="marked@*" data-semver="0.3.1" src="http://cdnjs.cloudflare.com/ajax/libs/marked/0.3.1/marked.js"></script>
+  <script src="https://rawgit.com/lodev09/bootstrap-markdown/master/js/bootstrap-markdown.js"></script>
+  <script src="https://rawgit.com/lodev09/jquery-filedrop/master/jquery.filedrop.js"></script>
+  <script src="https://rawgit.com/jeresig/jquery.hotkeys/master/jquery.hotkeys.js"></script>
+  <link data-require="bootstrap-css@3.1.1" data-semver="3.1.1" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+  <link data-require="fontawesome@4.1.0" data-semver="4.1.0" rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://rawgit.com/lodev09/bootstrap-markdown/master/css/bootstrap-markdown.min.css" />
+  -->
+  
+  <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script data-require="bootstrap@3.1.1" data-semver="3.1.1" src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <script data-require="marked@*" data-semver="0.3.1" src="http://cdnjs.cloudflare.com/ajax/libs/marked/0.3.1/marked.js"></script>
+  <script src="https://rawgit.com/lodev09/bootstrap-markdown/master/js/bootstrap-markdown.js"></script>
+  <script src="https://rawgit.com/lodev09/jquery-filedrop/master/jquery.filedrop.js"></script>
+  <script src="https://rawgit.com/jeresig/jquery.hotkeys/master/jquery.hotkeys.js"></script>
+  <link data-require="fontawesome@4.1.0" data-semver="4.1.0" rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://rawgit.com/lodev09/bootstrap-markdown/master/css/bootstrap-markdown.min.css" />  
+   
+  <script>
+  // markdown code - start
+
+  $(function() {
+          
+    var $previewContainer = $('#comment-md-preview-container');
+        $previewContainer.hide();
+
+    var $md = $("#comment-md").markdown({
+        autofocus: false,
+        height: 400,
+        iconlibrary: 'fa',
+
+        onShow: function(e) {
+        //e.hideButtons('cmdPreview');
+        e.change(e);
+        },
+
+        onChange: function(e) {
+        var content = e.parseContent();
+        if (content === '') $previewContainer.hide();
+        else $previewContainer.show().find('#comment-md-preview').html(content).find('table').addClass('table table-bordered table-striped table-hover');
+        },
+        additionalButtons: [
+        [{
+          name: 'groupHelp',
+          data: [{
+            name: 'cmdHelp',
+            title: 'Help',
+            hotkey: 'F1',
+            icon: 'fa fa-question',
+            callback: function(e) {
+              window.open('https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet');
+            }
+        }]
+        }]
+        ],
+        
+        footer: function(e) {
+
+        }
+        });
+  
+    var $mdEditor = $('.md-editor'),
+        msgs = {};
+  
+        $mdEditor.find('[data-md-footer-message]').each(function() {
+        msgs[$(this).data('md-footer-message')] = $(this).hide();
+        });
+        msgs
+  })
+  </script>
+  
+  <script>
+  function funDropdown() {
+      document.getElementById("idDropdown").classList.toggle("show");
+  }
+  window.onclick = function(event) {
+    if (!event.target.matches('.dropbtn')) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }}}
+  }
+  </script>
+  
+  <style type="text/css">
+  * {
+  margin:0;
+  padding:0;
+  }
+  #wrap {
+  background:#A6D2FF;
+  border-top:2px solid;
+  border-bottom:2px solid;
+  margin-bottom:30px;
+  }
+  #nav {
+  height:3.2em;
+  display:table;
+  margin:0 auto;
+  text-align:center;
+  }
+  #nav ul {
+  list-style:none;
+  display:inline-block; 
+  }
+  #nav ul {
+  display:inline;
+  }
+  #nav li {
+  display:inline;
+  }
+  #nav a {
+  float:left;
+  color:#000;
+  height:1.2em;
+  line-height:1.2em;
+  text-decoration:none; 
+  margin:1em 0 0 -2px;
+  padding:0 30px; 
+  font-weight:bold;
+  border-left:2px solid #000;
+  border-right:2px solid #000;
+  }
+  #nav a:hover, #nav a:focus {
+  color:#fff;
+  }
+  
+  button {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  font-size: 8px;
+  font-family: Arial,Helvetica,sans-serif;
+  }
+  </style>
+  
+  <style type="text/css">
+  #comment-md-preview{  
+      overflow-y: scroll; 
+      height:400px; 
+      background:#F5F5F5;
+      position:absolute;
+      left:0;
+      right:0;
+      height: 400;
+      top:0;
+      bottom:3em;
+  }
+  </style>
+  
+  <style type="text/css">
+  .dropbtn {
+      cursor: pointer;
+  }
+  .dropdown {
+      position: relative;
+      display: inline-block;
+  }
+  .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #A6D2FF;
+      border-top:2px solid #000;
+      border-bottom:2px solid #000;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+  }
+  .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+  }
+  .show {display:block;}
+  </style>
+</head>
+
+<div class="container">
+<h1 style="font-family:verdana; color: #2e6c80;"><b>Jacob's ML Repository</b></h1>
+<p>This repository contains Machine Learning tutorials, articles and other resources.</p>
+
+</div>
+
+<div id="wrap">
+<div id="nav">
+<div class="container">
+<ul>
+  <li><a href="/">Home</a></li>
+  <div class="dropdown" style="float:left;">
+    <li><a onclick="funDropdown()" class="dropbtn">Project</a></li>
+    <div id="idDropdown" class="dropdown-content">
+      <a href="/project/kaggle" style="border-style: hidden;">캐글</a>
+      <a href="/project/crawl" style="border-style: hidden;">웹크롤링</a>
+      <a href="/project/stock" style="border-style: hidden;">주가예측</a>
+      <a href="/project/book" style="border-style: hidden;">책쓰기</a>
+    </div>
+  </div>
+  <li><a href="/message">Message</a></li>
+  <li><a href="/document">Document</a></li>
+  <li><a href="/gallery">Gallery</a></li>
+  <li><a href="/about">About Me</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+<body>
+{% block body %}{% endblock %}
+</body>
+
+</html>
+
+
+

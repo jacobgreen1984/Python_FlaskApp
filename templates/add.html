@@ -1,0 +1,52 @@
+{% extends "layout.html" %} {% block body %}
+
+
+<div class="container">
+
+1. 글쓰기 주의사항: 한글은 붙여넣기하면 나중에 검색이 안됨(태그용 단어는 직접 기입)
+<br />
+2. 주요 마크다운: 줄바꿈(엔터x2), 빈줄(br), 강조(#), 줄(hr), 코드(code 또는 '''python()''')
+<br />
+  
+<div class="blog-main">
+    
+<form method="POST" action="/add">
+  <input type="text" style="width:48.5%" name="title" id="title" placeholder="title">
+
+  <hr />
+  
+  <div class="row">
+
+  <div class="col-md-6">
+  <textarea id="comment-md" name="content" placeholder="content"></textarea>
+  </div>
+
+  <div class="col-md-6">
+  <div id="comment-md-preview-container">
+  <div id="comment-md-preview">
+  </div>
+  </div>
+  </div>
+
+  </div><!--row-->
+
+  <script>
+  window.setInterval(function() {
+  var elem = document.getElementById('comment-md-preview');
+  elem.scrollTop = elem.scrollHeight;
+  }, 10000);
+  </script>
+
+  <br />
+  <button type="submit" class="btn btn-success btn-primary btn-sm">Submit</button>
+
+</form>	
+
+</div><!--blog-main-->
+</div><!--container-->
+
+
+{% endblock %}
+
+
+

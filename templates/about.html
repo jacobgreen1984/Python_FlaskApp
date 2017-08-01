@@ -1,0 +1,43 @@
+{% extends "layout.html" %} {% block body %}
+
+
+<div class="container">
+<img src="https://raw.githubusercontent.com/jacobgreen1984/etc/master/photo_id2.jpeg" style="width:20%">
+<br>
+<strong><h4>Take Your Passion and Make It Happen!</h2></strong>
+<h2>profile:</h2>
+    <li>Jong-Yeol Hyun, Data Scientiest at 2e consulting</li>
+    <li>email: jacobgreen1984@gmail.com</li>
+    <li>phone: +82 10 4255 8202</li> 
+    <li>education: Seoul School of Integrated Sciences & Technologies, major: financial engineering </li>
+    <li>language: R, Python, H2O, Tensorflow</li>
+    <li><a href="https://www.linkedin.com/in/jongyeol-hyun-3b50269a/">Linkedin</a></li>
+    <li><a href="https://github.com/jacobgreen1984">GitHub</a></li>
+    
+    
+</div>  
+
+
+<div class="container">
+<h2>project:</h2>
+    {% for n in myproject %}
+    <li>{{n}}</li>
+    {% endfor %}
+</div>
+
+
+<div class="container">
+<h2>etc:</h2>
+    {% for n in myetc %}
+    <li>{{n}}</li>
+    {% endfor %}
+</div>
+
+<br>
+<br>
+
+
+{% endblock %}
+
+
+

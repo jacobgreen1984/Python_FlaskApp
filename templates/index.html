@@ -1,0 +1,93 @@
+{% extends "layout.html" %} {% block body %}
+
+
+<div class="container">
+
+  <p>
+  New post: <a href="/add">
+  <span class="glyphicon glyphicon-plus"></span>
+  </a> 
+  &nbsp;&nbsp;&nbsp;
+  Del post: <a onclick="mydelete()">
+  <span class="glyphicon glyphicon-minus"></span>
+  </a>
+  &nbsp;&nbsp;&nbsp;
+  {% if pagination.has_prev %}<a href="{{ url_for('index', page=pagination.prev_num) }}">Next</a>{% else %}Next{% endif %} | 
+  {% if pagination.has_next %}<a href="{{ url_for('index', page=pagination.next_num) }}">Prev</a>{% else %}Prev{% endif %}
+  &nbsp;&nbsp;&nbsp;
+  Total visits: {{counter}}
+  </p>   
+
+  <script>
+  function mydelete() {
+  var password = prompt("Please enter password");
+  if (password == "1234") {
+  elements = document.getElementsByClassName('mybutton');
+  if (elements != null) {
+  for (var i = 0; i < elements.length; i++) {
+  if (elements[i].style.display === "none") {
+  elements[i].style.display = "block";
+  } else {
+  elements[i].style.display = "block";
+  }}}            
+  } else {
+  alert("password is not correct!");
+  }}
+  </script>     
+
+</div><!--container-->
+
+
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-sm-8 blog-main">
+
+      {% for post in posts %}
+      <div class="blog-post">
+        <form action="{{url_for("delete")}}" method=post>
+        <input type=hidden value="{{post.title}}" name="delete_title"></input>
+        <h3 class="blog-post-tilte">
+        <p>
+        <strong><a href="/post/{{post.id}}"><font size="4" color="#000000">{{post.id}} | {{post.title}}</font></a></strong>
+
+        <button class="mybutton" type="submit" name="delete_title" style="display:none; float: right; height:20px; width:30px;">delete</button>
+        </p>
+        </h3>
+        </form>
+        <p>{{post.content[:100]+"..."}}<a href="/post/{{post.id}}">Read more</a></p>
+        <hr />
+      </div><!--blog-post-->
+      {% endfor %}
+
+      {{ pagination.info }}
+      {{ pagination.links }}  
+
+    </div><!--blog-main-->
+
+    <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+      <div class="sidebar-module sidebar-module-inset">
+      <h5> Search a word in title/content</h5>
+      <p>
+      <form class="form-inline" method="GET" action="search">
+      <div class="form-group">
+      <label for="query"></label>
+      <input type="text" class="form-control input-sm" name="query" id="query">
+      </div>
+      <button type="submit" class="btn btn-success btn-primary btn-sm">Search</button>
+      </form>
+      </p>   
+      <img src=https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Flag_of_South_Korea_%28cropped%29.jpg/220px-Flag_of_South_Korea_%28cropped%29.jpg style="margin-left:5px">
+      </div>
+    </div><!--blog-sidebar-->
+
+  </div><!--row-->
+
+</div><!--container-->
+
+
+{% endblock %}
+
+
+
