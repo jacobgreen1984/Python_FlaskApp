@@ -66,21 +66,33 @@
 
     </div><!--blog-main-->
 
-    <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
-      <div class="sidebar-module sidebar-module-inset">
-      <h5> Search a word in title/content</h5>
-      <p>
-      <form class="form-inline" method="GET" action="search">
-      <div class="form-group">
-      <label for="query"></label>
-      <input type="text" class="form-control input-sm" name="query" id="query">
-      </div>
-      <button type="submit" class="btn btn-success btn-primary btn-sm">Search</button>
-      </form>
-      </p>   
-      <img src=https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Flag_of_South_Korea_%28cropped%29.jpg/220px-Flag_of_South_Korea_%28cropped%29.jpg style="margin-left:5px">
-      </div>
+    
+    <div class="col-sm-3 col-sm-offset-1 blog-sidebar"><!--blog-sidebar-->
+ 
+      <h5>Keyword search</h5>
+      <div class="row">
+        <form class="form-inline" method="GET" action="search">
+        <div class="form-group">
+        <label for="query"></label>
+        <input type="text" class="form-control input-sm" name="query" id="query" size="10" style="margin-left:10px">
+        </div>
+        <button type="submit" class="btn btn-success btn-primary btn-sm">Search</button>
+        </form>
+      </div>   
+      
+      <br /> 
+
+      <h5 style="margin-bottom:5px">Recent posts</h5>
+      <ul style="margin-left:20px">
+        {% for post in recent %}
+        <li type="square"><a href="{{
+        url_for('view', id=post.id)
+        }}">{{post.title}}</a></li>
+        {% endfor %}
+      <ul>
+
     </div><!--blog-sidebar-->
+    
 
   </div><!--row-->
 
