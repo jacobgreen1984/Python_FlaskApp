@@ -88,6 +88,12 @@ wa.whoosh_index(app,Post)
 #==============================================================================
 # home(index)
 #==============================================================================
+def sidebar_data():
+    recent=Post.query.order_by(
+            Post.id.desc()
+            ).limit(5).all()
+    return recent
+
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
 @app.route('/index/<int:page>', methods=['GET', 'POST'])
@@ -102,7 +108,8 @@ def index(page=1):
     
     pagination = Post.query.order_by(desc('id')).paginate(page, 5, False)
     posts = pagination.items
-    return render_template('index.html',posts=posts,pagination=pagination,counter=v.count)
+    recent = sidebar_data()
+    return render_template('index.html',posts=posts,pagination=pagination,counter=v.count,recent=recent)
  
 
 @app.route('/post/<id>')
@@ -123,7 +130,8 @@ def search(page=1):
     
     pagination = Post.query.order_by(desc('id')).paginate(page, 5, False)
     posts = Post.query.whoosh_search(request.args.get("query")).all()
-    return render_template("index.html",posts=posts,pagination=pagination,counter=v.count)
+    recent = sidebar_data()
+    return render_template("index.html",posts=posts,pagination=pagination,counter=v.count,recent=recent)
 
 @app.route("/add",methods=["GET","POST"])
 def add():
